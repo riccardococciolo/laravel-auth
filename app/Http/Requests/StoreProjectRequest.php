@@ -24,7 +24,18 @@ class StoreProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required', 'max:200', 'min:5', 'unique:projects'],
+            'content' => ['nullable']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Il titolo è obbligatorio.',
+            'title.min' => 'Il titolo deve avere una lunghezza minima di :min caratteri.',
+            'title.max' => 'Il titolo deve avere una lunghezza massima di :max caratteri.',
+            'title.unique' => 'Non ci devono essere titoli con lo stesso nome.',
         ];
     }
 }

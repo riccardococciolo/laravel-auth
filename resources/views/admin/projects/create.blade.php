@@ -24,8 +24,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="description" class="form-label">Descrizione</label>
-                        <textarea class="form-control" id="description" rows="3" name="description">{{ old('content') }}</textarea>
+                        <label for="content" class="form-label">Descrizione</label>
+                        <textarea class="form-control" id="content" rows="3" name="content">{{ old('content') }}</textarea>
                     </div>
 
                     <button class="btn btn-success" type="submit">Salva</button>
