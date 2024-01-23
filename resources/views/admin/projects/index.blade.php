@@ -26,8 +26,8 @@
                         <th scope="row">{{ $project->id }}</th>
                         <td>{{ $project->title }}</td>
                         <td>
-                            <a class="btn btn-success" href="{{ route('admin.projects.show', ['project' => $project->id]) }}">Dettagli</a>
-                            <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Modifica</a>
+                            <a class="btn btn-success" href="{{ route('admin.projects.show', ['project' => $project->slug]) }}">Dettagli</a>
+                            <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}">Modifica</a>
                         </td>
                     </tr>
                 @endforeach
