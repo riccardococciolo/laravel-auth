@@ -2,10 +2,15 @@
 
 @section('content')
     <div class="container py-5">
-        <h1>Lista</h1>
-        @if (session('success'))
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>Lista</h1>
+            <a href="{{ url()->previous() }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Torna Indietro
+            </a>
+        </div>
+        @if (session('message'))
             <div class="alert alert-success">
-                {{ session('success') }}
+                {{ session('message') }}
             </div>
         @endif
         <div class="text-end">
@@ -26,14 +31,22 @@
                         <th scope="row">{{ $project->id }}</th>
                         <td>{{ $project->title }}</td>
                         <td>
-                            <a class="btn btn-success" href="{{ route('admin.projects.show', ['project' => $project->slug]) }}">Dettagli</a>
-                            <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}">Modifica</a>
+                            <a class="btn btn-success"
+                                href="{{ route('admin.projects.show', ['project' => $project->slug]) }}">Dettagli</a>
+                            <a class="btn btn-warning"
+                                href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}">Modifica</a>
+                            <form action="{{ route('admin.projects.destroy', ['project' => $project->slug]) }}"
+                                class="d-inline-block" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-delete" type="submit" data-title="{{ $project->title }}">
+                                    <div>Elimina</div>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-
-
 @endsection

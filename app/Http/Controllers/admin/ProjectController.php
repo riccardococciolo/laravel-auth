@@ -47,7 +47,7 @@ class ProjectController extends Controller
             $project->slug = Str::slug($project->title, '-');
             $project->save();
     
-            return redirect()->route('admin.projects.show', ['project' => $project->slug]);
+            return redirect()->route('admin.projects.show', ['project' => $project->slug])->with('message', 'il messaggio é stato creato con successo');
         }
     }
 
@@ -86,7 +86,7 @@ class ProjectController extends Controller
             $form_data = $request->all();
             $project->update($form_data);
     
-            return redirect()->route('admin.projects.show', ['project' => $project->slug]);
+            return redirect()->route('admin.projects.show', ['project' => $project->slug])->with('message', 'il messaggio é stato modificato con successo');
         }
     }
 
@@ -98,6 +98,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('admin.projects.index')->with('message', 'il messaggio é stato eliminato con successo');
     }
 }
