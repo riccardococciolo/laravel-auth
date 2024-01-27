@@ -8,6 +8,13 @@
             </a>
         </div>
         <h1>{{ $project->title }}</h1>
+        @if ($project->cover_image)
+            <div class="">
+                <img class="w-50" src="{{ asset('storage/' . $project->cover_image) }}" alt="">
+            </div>
+        @else
+            <p>Nessuna immagine presente</p>
+        @endif
         <hr>
         <p>{{ $project->content }}</p>
         @if (session('message'))

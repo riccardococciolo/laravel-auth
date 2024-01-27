@@ -11,7 +11,7 @@
 
         <div class="row justify-content-center mt-5">
             <div class="col-6 mb-5">
-                <form action="{{ route('admin.projects.store') }}" method="POST">
+                <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" >
                     @csrf
                     
                     <div class="mb-3 has-validation">
@@ -27,6 +27,11 @@
                     <div class="mb-3">
                         <label for="content" class="form-label">Descrizione</label>
                         <textarea class="form-control" id="content" rows="3" name="content">{{ old('content') }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cover_image" class="form-label">Immagine</label>
+                        <input class="form-control" type="file" id="cover_image" name="cover_image" value="{{ old('cover_image') }}">
                     </div>
 
                     <button class="btn btn-success" type="submit">Salva</button>

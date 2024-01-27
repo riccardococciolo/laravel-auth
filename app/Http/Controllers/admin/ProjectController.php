@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -45,6 +46,12 @@ class ProjectController extends Controller
             $project = new project();
             $project->fill($form_data);
             $project->slug = Str::slug($project->title, '-');
+
+            if($request->hasFile('cover_image')) {
+                $path = Storage::put('project_images', $request->cover_image);
+                $project->cover_image = $path;
+            }
+
             $project->save();
     
             return redirect()->route('admin.projects.show', ['project' => $project->slug])->with('message', 'il messaggio é stato creato con successo');

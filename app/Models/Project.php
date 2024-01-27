@@ -10,10 +10,10 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content', 'slug'];
+    protected $fillable = ['title', 'content', 'slug', 'cover_image'];
 
     public function setTitleAttribute($_title) {
         $this->attributes['title'] = $_title;
-        $this->attributes['slug'] = Str::slug($_title); 
+        $this->attributes['slug'] = Str::slug($_title);
     }
 }
