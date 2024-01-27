@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="mb-2">
-                        <img id="preview-img" src="{{ asset('storage/' . $post->cover_image) }}" alt="">
+                        <img class="w-50" id="preview-img" src="{{ asset('storage/' . $project->cover_image) }}" alt="">
                     </div>
 
                     <button class="btn btn-success" type="submit">Salva</button>
@@ -46,4 +46,8 @@
         </div>
        
     </div>
+@endsection
+
+@section('scripts')
+    @vite(['resources/js/image-preview.js'])
 @endsection

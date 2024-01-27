@@ -91,6 +91,16 @@ class ProjectController extends Controller
     {
         {
             $form_data = $request->all();
+
+            if($request->hasFile('cover_image')) {
+                if($project->cover_image) {
+                    Storage::delete($project->cover_image);
+                }
+    
+                $path = Storage::put('project_images', $request->cover_image);
+                $form_data['cover_image'] = $path;
+            }    
+
             $project->update($form_data);
     
             return redirect()->route('admin.projects.show', ['project' => $project->slug])->with('message', 'il messaggio é stato modificato con successo');
